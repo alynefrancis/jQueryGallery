@@ -6,7 +6,7 @@ module.exports = function(grunt) {
    sass: {
       dist: {
         files: {
-          'css/style.css' : 'css/style.scss'
+          'css/stylesheet.css' : 'css/stylesheet.scss'
           // says I am looking for changes in my scss
         }
       }
@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     watch: {
       css: {
         files: ['css/*.scss'],
-        tasks: ['sass', 'cssmin', 'csslint']
+        tasks: ['sass', 'cssmin']
       },
       jade: {
         files: ['jade/*.jade'],
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         browsers: ['last 5 versions', 'ie 7', 'ie 8', 'ie 9']
       },
       no_dest: {
-        src: 'css/style.css'
+        src: 'css/stylesheet.css'
       }
     },
     cssmin: {
@@ -49,11 +49,11 @@ module.exports = function(grunt) {
         ext: '.min.css'
       }
     },
-    csslint: {
-      strict: {
-        src: ['css/*.css']
-      }
-    },
+    // csslint: {
+    //   strict: {
+    //     src: ['css/*.css']
+    //   }
+    // },
     jade: {
       compile: {
         files: [{
@@ -78,7 +78,6 @@ module.exports = function(grunt) {
  grunt.loadNpmTasks('grunt-contrib-connect');
  grunt.loadNpmTasks('grunt-autoprefixer');
  grunt.loadNpmTasks('grunt-contrib-cssmin');
- grunt.loadNpmTasks('grunt-contrib-csslint');
  grunt.loadNpmTasks('grunt-contrib-jade');
 
 // grunt connect (or more verbosely, grunt connect:server) will start a static web server at http://localhost:9001/, with its base path set to the www-root directory relative to the gruntfile, and any tasks run afterwards will be able to access it.
@@ -86,7 +85,7 @@ module.exports = function(grunt) {
 
 
  // Default task(s).
- grunt.registerTask('default', ['connect', 'sass', 'cssmin', 'csslint', 'watch']);
+ grunt.registerTask('default', ['connect', 'sass', 'cssmin', 'watch']);
 };
 // on the grunt website it says there is 'sass' in the square brackets above 
 

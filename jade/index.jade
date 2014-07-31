@@ -1,0 +1,53 @@
+//- include includes/_header.jade
+//- include includes/script.js
+include _header.jade
+//- include includes/script.js
+
+
+
+body
+	div(class="container clearfix")
+		div(class="gallery")
+			h1 jQuery gallery
+
+			div(class="previews")
+				a(href="#" class="selected" data-full="images/architecture1large.jpg" data-info="1 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
+					img(src="images/architecture1small.jpg")
+				a(href="#" data-full="images/architecture2large.jpg" data-info="2 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
+					img(src="images/architecture2small.jpg")
+				a(href="#" data-full="images/architecture3large.jpg" data-info="3 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
+					img(src="images/architecture3small.jpg")
+				a(href="#" data-full="images/architecture4large.jpg" data-info="4 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
+					img(src="images/architecture4small.jpg")
+				a(href="#" data-full="images/architecture5large.jpg" data-info="5 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
+					img(src="images/architecture5small.jpg")
+
+			div(class="mainImage")
+				//- first image is viewable at the start
+				a(class="fancyImage" href="images/architecture1large.jpg")
+					img(src="images/architecture1large.jpg")
+
+			div(class="textbox")
+
+				p 1. sahdjahdasdasdkjnasdjknasjk
+			
+script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+script(src="fancybox/jquery.fancybox.js?v=2.1.4")
+
+script.
+	$(function() {
+		$('.previews a').on('click',function(e){
+			e.preventDefault();
+			var biggerPicture = $(this).data('full');
+			$('.mainImage img').attr('src',biggerPicture);
+			$(this).fadeTo( "slow", 0.33 );
+			$('p').html($(this).data('info'));
+			$('.fancyImage').attr('href', biggerPicture);
+	
+		});
+
+		$('.mainImage a').fancybox();
+
+	});
+	
+
