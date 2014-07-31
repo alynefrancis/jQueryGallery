@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Gallery</title>
+  <link rel="stylesheet" href="stylesheet.css">
+  <link rel="stylesheet" href="fancybox/jquery.fancybox.css">
+</head>
+<body>
+  <div class="container clearfix">
+    <div class="gallery">
+      <h1>jQuery Gallery</h1>
+
+      <div class="previews">
+          <a href="#" class="selected" data-full="images/architecture1large.jpg" data-info= "1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum illo, alias earum, sunt obcaecati blanditiis veritatis? Inventore deleniti blanditiis reiciendis perspiciatis magnam cum, modi atque aspernatur animi possimus sequi, ratione."><img src="images/architecture1small.jpg" /></a>
+          <a href="#" data-full="images/architecture2large.jpg" data-info="2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore neque veniam consequuntur cumque quos ut dolorem voluptas eos! Voluptate officia quaerat, odio iusto autem dolorum quas sequi, consequatur delectus nesciunt." ><img src="images/architecture2small.jpg" /></a>
+          <a href="#" data-full="images/architecture3large.jpg" data-info= "3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum."><img src="images/architecture3small.jpg" /></a>
+          <a href="#" data-full="images/architecture4large.jpg" data-info= "4. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum."><img src="images/architecture4small.jpg" /></a>
+          <a href="#" data-full="images/architecture5large.jpg" data-info="5. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum."><img src="images/architecture5small.jpg" /></a>
+      </div>
+
+      <div class="mainImage">
+          <!-- first image is viewable to start -->
+          <a class = "fancyImage" href= "images/architecture1large.jpg" ><img src="images/architecture1large.jpg"/></a>
+      </div>
+
+      <div class="textBox">
+      <p>1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil enim, cupiditate accusamus animi accusantium nulla dolore beatae facilis unde magnam quos, placeat ullam, inventore est ipsam aspernatur porro. Praesentium, odio.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="fancybox/jquery.fancybox.js?v=2.1.4"></script>
+  <script>
+    $(function() {
+      $('.previews a').on('click',function(e){
+          e.preventDefault();
+        var biggerPicture = $(this).data('full');
+        $('.mainImage img').attr('src',biggerPicture);
+        $(this).fadeTo("slow", 0.33);
+        var infoText = $(this).data('info');
+        $('p').html(infoText);
+        $('.fancyImage').attr('href', biggerPicture);
+        // $('p').html($(this).data('info')) 
+        // this is the same as the two lines above but just put into one line
+        // var fancyBoxImage = $('.fancyImage').attr('href', biggerPicture)
+        // $(fancyBoxImage).fancybox();
+        // $.fancybox.open('.mainImage a', biggerPicture)
+      });
+        $('.mainImage a').fancybox();
+       // $(".mainImage img").on('click', function(){
+       //    // $(this).fancybox();
+       //    // var largePicture = $('.previews a').data('full');
+       //    // $('.mainImage img').attr('src',largePicture);
+       //   $.fancybox.open(' href', '.fancyImage');
+        
+        // })
+    });
+
+     </script>
+    // $.fancybox.open(sourceOfImage)
+    // things we need
+
+      // The JavaScript that we will be writing will be loading within the HTML document so there is a chance that it will execute before the page is fully loaded.If we try to find an element using jQuery before it’s loaded, we will get an error. To prevent this from happening we use a jQuery method that will let us know when the document is ready to be manipulated.
+    // $(document).ready(function(){
+  // your code here
+// });
+   
+    // - we need an event listener that says = 
+    // $(selector).on(event, function(){
+  // run this code when event happens
+  // ie on something like $('previews a').on('click', function(switch to .full){}
+// });
+
+    // doubleclick to open fancybox
+    // };
+
+  
+</body>
+</html>
