@@ -14,15 +14,12 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
  }
 
-
-
-
 .container {
-    max-width: 960px;
+    max-width: 1100px;
     width: 100%;
     margin: 0 auto;
     padding: 20px;
-    padding-bottom: 40px;
+    // padding-bottom: 40px;
     background-color: #EBEBEB;
     font-family: 'Calibri','CalibriRegular',Verdana,Arial,Helvetica,sans-serif;
     border: 3px solid black;
@@ -37,27 +34,73 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .textBox {
   width: 45%;
 }*/
+// .img {
 
-.gallery {}
+// }
+.greyScale {
+   -webkit-filter:grayscale(1);
+}
+.sepia {
+  -webkit-filter:sepia(1)
+}
+.saturation {
+  -webkit-filter:saturate(6)
+}
+.greyScaleSwitch {
+  width: 40px;
+  height: 30px;
+  background-color: black;
+  clear: both;
+  float: left;
+  margin-left: 20%;
+}
+.sepiaSwitch {
+  width: 40px;
+  height: 30px;
+  background-color: blue;
+  float: left;
+  margin-left: 8%;
+}
+
+.saturationSwitch {
+  width: 40px;
+  height: 30px;
+  background-color: red;
+  float: left;
+  margin-left: 8%;
+}
+
+.camera {
+  float: left;
+  background-color: black;
+  width: 20px;
+  height: 20px;
+}
+
+// .gallery {
+
+// }
 .gallery .previews, 
 .gallery .mainImage, 
 .gallery .textBox {
     float: left;
     margin-right: 10px;
-    border: 2px solid blue;
+    /*border: 2px solid blue;*/
+    
+
     
 }
 
 .gallery .textBox, 
 .gallery .mainImage {
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
     font-size: 12px;
 }
 
 .gallery .textBox h2 {
     margin-top: 0;
-    
+
 
 }
 
@@ -66,19 +109,24 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
     margin-bottom: 10px;
     border-bottom: 10px solid white;
     box-shadow: 0 0 0 2px white, 0 0 0 3px black;
+    width: 100%;
 }
 
 .gallery .full, 
 .gallery .textBox, 
 .gallery .mainImage img {
-    height: 445px;
+ /*   height: 445px;*/
+    width: 100%;
     border-bottom: 70px solid white;
     box-shadow: 0 0 0 2px white, 0 0 0 3px black;
+    float: left;
+
 }
 
 .gallery .previews a, 
 .gallery .mainImage {
-   /* border: 4px solid #eee;*/
+    /*border: 4px solid #eee;*/
+    width: 100%;
 
 }
 

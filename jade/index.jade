@@ -1,53 +1,89 @@
-//- include includes/_header.jade
-//- include includes/script.js
-include _header.jade
-//- include includes/script.js
+doctype html 
+html(lang="en")
+	include _header.jade
+	body
+		div(class="container clearfix")
+			div(class="gallery")
+				h1 jQuery gallery
 
+				div(class="previews")
+					a(href="#" class="selected" data-full="images/architecture1large.jpg" data-zoom-image="images/architecture1large.jpg" data-info="1 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd" data-image= "images/icon_9287.svg")
+						img(src="images/architecture1small.jpg")
+					a(href="#" data-full="images/architecture2large.jpg" data-zoom-image="images/architecture2large.jpg" data-info="2 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
+						img(src="images/architecture2small.jpg")
+					a(href="#" data-full="images/architecture3large.jpg" data-zoom-image="images/architecture3large.jpg" data-info="3 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
+						img(src="images/architecture3small.jpg")
+					a(href="#" data-full="images/architecture4large.jpg" data-zoom-image="images/architecture4large.jpg" data-info="4 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
+						img(src="images/architecture4small.jpg")
+					a(href="#" data-full="images/architecture5large.jpg" data-zoom-image="images/architecture5large.jpg" data-info="5 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
+						img(src="images/architecture5small.jpg")
 
+				div(class="mainImage")
+					//- first image is viewable at the start
+					a(class="fancyImage" id = "zoom" href="images/architecture1large.jpg")
+						img(id = 'helpme' src="images/architecture1large.jpg")
 
-body
-	div(class="container clearfix")
-		div(class="gallery")
-			h1 jQuery gallery
+				div(class="textbox")
 
-			div(class="previews")
-				a(href="#" class="selected" data-full="images/architecture1large.jpg" data-info="1 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
-					img(src="images/architecture1small.jpg")
-				a(href="#" data-full="images/architecture2large.jpg" data-info="2 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
-					img(src="images/architecture2small.jpg")
-				a(href="#" data-full="images/architecture3large.jpg" data-info="3 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
-					img(src="images/architecture3small.jpg")
-				a(href="#" data-full="images/architecture4large.jpg" data-info="4 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
-					img(src="images/architecture4small.jpg")
-				a(href="#" data-full="images/architecture5large.jpg" data-info="5 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd")
-					img(src="images/architecture5small.jpg")
+					p 1. sahdjahdasdasdkjnasdjknasjk
 
-			div(class="mainImage")
-				//- first image is viewable at the start
-				a(class="fancyImage" href="images/architecture1large.jpg")
-					img(src="images/architecture1large.jpg")
+				div(class="camera")
 
-			div(class="textbox")
+				div(class="greyScaleSwitch")
 
-				p 1. sahdjahdasdasdkjnasdjknasjk
+				div(class="sepiaSwitch")
+
+				div(class="saturationSwitch")
+				
+
+				
+	script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+	script(src="fancybox/jquery.fancybox.js?v=2.1.4")
+	script(src="jquery.mlens-1.4.js")
+	script(src="imageLens/jquery.imageLens.js")
+
+	script.
+		$(function() {
+			$('.previews a').on('click',function(e){
+				e.preventDefault();
+				$('.mainImage').css('opacity', 1)
+				var biggerPicture = $(this).data('full');
+				$('.mainImage img').attr('src', biggerPicture);
+				$('.placeholder').css ('display', 'none')
+				//- var zoomPicture = $(this).data('zoom-image');
+				//- $('.mainImage img').attr('src',zoomPicture);
+
+				$(this).fadeTo( "slow", 0.33 );
+
+				//- var infoText = $(this).data('info');
+				//- $('p').html(infoText);
+				//- the two above lines are equal to below
+				$('p').html($(this).data('info'));
+				$('.fancyImage').attr('href', biggerPicture);
+			});
 			
-script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
-script(src="fancybox/jquery.fancybox.js?v=2.1.4")
+			$('.mainImage').mlens({
+				imgSrc: $('.mainImage img').attr('src', '#helpme'),
+				lensShape: 'square',
+				lensSize: 160,
+				borderSize: 0,
+				borderColor: '#fff',
+				zoomLevel: 0.5
+			});
 
-script.
-	$(function() {
-		$('.previews a').on('click',function(e){
-			e.preventDefault();
-			var biggerPicture = $(this).data('full');
-			$('.mainImage img').attr('src',biggerPicture);
-			$(this).fadeTo( "slow", 0.33 );
-			$('p').html($(this).data('info'));
-			$('.fancyImage').attr('href', biggerPicture);
-	
+			$('.fancyImage').fancybox();
+
+			$('.greyScaleSwitch').on('click', function(){
+				console.log("hello")
+				$('.mainImage img').toggleClass('greyScale');
+			});
+			$('.sepiaSwitch').on('click', function(){
+				console.log("hello")
+				$('.mainImage img').toggleClass('sepia');
+			});
+			$('.saturationSwitch').on('click', function(){
+				console.log("hello")
+				$('.mainImage img').toggleClass('saturation');
+			});
+
 		});
-
-		$('.mainImage a').fancybox();
-
-	});
-	
-

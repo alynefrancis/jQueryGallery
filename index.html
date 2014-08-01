@@ -1,40 +1,76 @@
-<!DOCTYPE html>
-<html lang="en"></html>
-<head>
-  <meta charset="UTF-8"/>
-  <title>Week 5 Project</title>
-  <link rel="stylesheet" href="css/stylesheet.css"/>
-  <link rel="stylesheet" href="fancybox/jquery.fancybox.css"/>
-  <link href="http://fonts.googleapis.com/css?family=Roboto:400,500,900" rel="stylesheet" type="text/css"/>
-</head>
-<body>
-  <div class="container clearfix">
-    <div class="gallery">
-      <h1>jQuery gallery</h1>
-      <div class="previews"><a href="#" data-full="images/architecture1large.jpg" data-info="1 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd" class="selected"><img src="images/architecture1small.jpg"/></a><a href="#" data-full="images/architecture2large.jpg" data-info="2 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd"><img src="images/architecture2small.jpg"/></a><a href="#" data-full="images/architecture3large.jpg" data-info="3 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd"><img src="images/architecture3small.jpg"/></a><a href="#" data-full="images/architecture4large.jpg" data-info="4 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd"><img src="images/architecture4small.jpg"/></a><a href="#" data-full="images/architecture5large.jpg" data-info="5 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd"><img src="images/architecture5small.jpg"/></a></div>
-      <div class="mainImage"><a href="images/architecture1large.jpg" class="fancyImage"><img src="images/architecture1large.jpg"/></a>
-      </div>
-      <div class="textbox">
-        <p>1. sahdjahdasdasdkjnasdjknasjk</p>
+<!DOCTYPE html >
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Week 5 Project</title>
+    <link rel="stylesheet" href="css/stylesheet.css"/>
+    <link rel="stylesheet" href="fancybox/jquery.fancybox.css"/>
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,500,900" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <div class="container clearfix">
+      <div class="gallery">
+        <h1>jQuery gallery</h1>
+        <div class="previews"><a href="#" data-full="images/architecture1large.jpg" data-zoom-image="images/architecture1large.jpg" data-info="1 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd" data-image="images/icon_9287.svg" class="selected"><img src="images/architecture1small.jpg"/></a><a href="#" data-full="images/architecture2large.jpg" data-zoom-image="images/architecture2large.jpg" data-info="2 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd"><img src="images/architecture2small.jpg"/></a><a href="#" data-full="images/architecture3large.jpg" data-zoom-image="images/architecture3large.jpg" data-info="3 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd"><img src="images/architecture3small.jpg"/></a><a href="#" data-full="images/architecture4large.jpg" data-zoom-image="images/architecture4large.jpg" data-info="4 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd"><img src="images/architecture4small.jpg"/></a><a href="#" data-full="images/architecture5large.jpg" data-zoom-image="images/architecture5large.jpg" data-info="5 asdasddsnfjsdnfjsdnfjdnfjsdnfjnsd"><img src="images/architecture5small.jpg"/></a></div>
+        <div class="mainImage"><a id="zoom" href="images/architecture1large.jpg" class="fancyImage"><img id="helpme" src="images/architecture1large.jpg"/></a>
+        </div>
+        <div class="textbox">
+          <p>1. sahdjahdasdasdkjnasdjknasjk</p>
+        </div>
+        <div class="camera"></div>
+        <div class="greyScaleSwitch"></div>
+        <div class="sepiaSwitch"></div>
+        <div class="saturationSwitch"></div>
       </div>
     </div>
-  </div>
-</body>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="fancybox/jquery.fancybox.js?v=2.1.4"></script>
-<script>
-  $(function() {
-   $('.previews a').on('click',function(e){
-    e.preventDefault();
-    var biggerPicture = $(this).data('full');
-    $('.mainImage img').attr('src',biggerPicture);
-    $(this).fadeTo( "slow", 0.33 );
-    $('p').html($(this).data('info'));
-    $('.fancyImage').attr('href', biggerPicture);
-   });
-   
-   $('.mainImage a').fancybox();
-   
-  });
-  
-</script>
+  </body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="fancybox/jquery.fancybox.js?v=2.1.4"></script>
+  <script src="jquery.mlens-1.4.js"></script>
+  <script src="imageLens/jquery.imageLens.js"></script>
+  <script>
+    $(function() {
+     $('.previews a').on('click',function(e){
+      e.preventDefault();
+      $('.mainImage').css('opacity', 1)
+      var biggerPicture = $(this).data('full');
+      $('.mainImage img').attr('src', biggerPicture);
+      $('.placeholder').css ('display', 'none')
+      //- var zoomPicture = $(this).data('zoom-image');
+      //- $('.mainImage img').attr('src',zoomPicture);
+      
+      $(this).fadeTo( "slow", 0.33 );
+      
+      //- var infoText = $(this).data('info');
+      //- $('p').html(infoText);
+      //- the two above lines are equal to below
+      $('p').html($(this).data('info'));
+      $('.fancyImage').attr('href', biggerPicture);
+     });
+     $('.mainImage').mlens({
+      imgSrc: $('.mainImage img').attr('src', '#helpme'),
+      lensShape: 'square',
+      lensSize: 160,
+      borderSize: 0,
+      borderColor: '#fff',
+      zoomLevel: 0.5
+     });
+     
+     $('.fancyImage').fancybox();
+     
+     $('.greyScaleSwitch').on('click', function(){
+      console.log("hello")
+      $('.mainImage img').toggleClass('greyScale');
+     });
+     $('.sepiaSwitch').on('click', function(){
+      console.log("hello")
+      $('.mainImage img').toggleClass('sepia');
+     });
+     $('.saturationSwitch').on('click', function(){
+      console.log("hello")
+      $('.mainImage img').toggleClass('saturation');
+     });
+     
+    });
+  </script>
+</html>
